@@ -2,6 +2,7 @@ import { Controller, Get, CacheKey, UseInterceptors, CacheInterceptor } from '@n
 import { ReadApiService } from '../services/read-api.service';
 import { MessagePattern } from "@nestjs/microservices";
 import { ReadDto } from '../entity/dto/ReadDto';
+import { TinyUrlCache } from '../utils/interceptors/TinyUrlCache';
 
 
 @Controller()
@@ -10,8 +11,8 @@ export class ReadTinyUrlController {
   constructor(private readonly readApiService: ReadApiService) {}
 
   @MessagePattern("read_url")
+  @UseInterceptors(TinyUrlCache)
   public getUrl(payload : ReadDto) {
-   
     return this.readApiService.getUrl(payload);
   }
 }
