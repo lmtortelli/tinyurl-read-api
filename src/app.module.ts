@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ReadTinyUrlController } from './controllers/read-tinyurl.controller';
+import { ReadApiService } from './services/read-api.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TinyUrl } from './entity/TinyUrl.entity';
 
@@ -19,7 +19,11 @@ import { TinyUrl } from './entity/TinyUrl.entity';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    ReadTinyUrlController
+  ],
+  providers: [
+    ReadApiService
+  ],
 })
 export class AppModule {}
